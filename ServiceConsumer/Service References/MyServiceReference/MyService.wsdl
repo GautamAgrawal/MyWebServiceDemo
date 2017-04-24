@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="SumOfNums">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="First" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Second" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SumOfNumsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SumOfNumsResult" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSumThroughObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="JsonStr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSumThroughObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSumThroughObjectResult" type="tns:SumClass" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="SumClass">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="First" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Second" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Sum" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="SumOfNumsSoapIn">
+    <wsdl:part name="parameters" element="tns:SumOfNums" />
+  </wsdl:message>
+  <wsdl:message name="SumOfNumsSoapOut">
+    <wsdl:part name="parameters" element="tns:SumOfNumsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSumThroughObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSumThroughObject" />
+  </wsdl:message>
+  <wsdl:message name="GetSumThroughObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSumThroughObjectResponse" />
+  </wsdl:message>
+  <wsdl:portType name="MyServiceSoap">
+    <wsdl:operation name="SumOfNums">
+      <wsdl:input message="tns:SumOfNumsSoapIn" />
+      <wsdl:output message="tns:SumOfNumsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SumOfNums">
+      <wsdl:input name="GetSumThroughObject" message="tns:GetSumThroughObjectSoapIn" />
+      <wsdl:output name="GetSumThroughObject" message="tns:GetSumThroughObjectSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MyServiceSoap" type="tns:MyServiceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SumOfNums">
+      <soap:operation soapAction="http://tempuri.org/SumOfNums" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SumOfNums">
+      <soap:operation soapAction="http://tempuri.org/GetSumThroughObject" style="document" />
+      <wsdl:input name="GetSumThroughObject">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSumThroughObject">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MyServiceSoap12" type="tns:MyServiceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="SumOfNums">
+      <soap12:operation soapAction="http://tempuri.org/SumOfNums" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SumOfNums">
+      <soap12:operation soapAction="http://tempuri.org/GetSumThroughObject" style="document" />
+      <wsdl:input name="GetSumThroughObject">
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="GetSumThroughObject">
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MyService">
+    <wsdl:port name="MyServiceSoap" binding="tns:MyServiceSoap">
+      <soap:address location="http://localhost/WebServiceForBlog/MyService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MyServiceSoap12" binding="tns:MyServiceSoap12">
+      <soap12:address location="http://localhost/WebServiceForBlog/MyService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

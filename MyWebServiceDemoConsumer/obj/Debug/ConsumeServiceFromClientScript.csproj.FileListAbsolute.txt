@@ -1,0 +1,5 @@
+E:\DemoProjects\Blog\MyWebServiceDemo\MyWebServiceDemoConsumer\bin\MyWebServiceDemoConsumer.dll
+E:\DemoProjects\Blog\MyWebServiceDemo\MyWebServiceDemoConsumer\bin\MyWebServiceDemoConsumer.pdb
+E:\DemoProjects\Blog\MyWebServiceDemo\MyWebServiceDemoConsumer\obj\Debug\ConsumeServiceFromClientScript.csprojResolveAssemblyReference.cache
+E:\DemoProjects\Blog\MyWebServiceDemo\MyWebServiceDemoConsumer\obj\Debug\MyWebServiceDemoConsumer.dll
+E:\DemoProjects\Blog\MyWebServiceDemo\MyWebServiceDemoConsumer\obj\Debug\MyWebServiceDemoConsumer.pdb
